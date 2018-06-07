@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+    <script src="echarts.js"></script>
+    <script src="map/js/china.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+          // 指定图表的配置项和数据
+        var data = [
+  {name: '贵州', value: 10.46368715},
+  {name: '重庆', value: 5.448706383},
+  {name: '四川', value: 5.207178993},
+  {name: '陕西', value: 3.944788603},
+  {name: '福建', value: 3.699821018},
+  {name: '湖北', value: 3.541172484},
+  {name: '广东', value: 3.16053362},
+  {name: '河南', value: 3.000273037},
+  {name: '安徽', value: 2.847413187},
+  {name: '云南', value: 2.809228597},
+  {name: '江西', value: 2.808247333},
+  {name: '宁夏', value: 2.66944367},
+  {name: '广西', value: 2.599795292},
+  {name: '湖南', value: 2.457654296},
+  {name: '江苏', value: 2.397469269},
+  {name: '山西', value: 2.293138142},
+  {name: '上海', value: 2.253621301},
+  {name: '青海', value: 2.22266787},
+  {name: '浙江', value: 2.103588474},
+  {name: '北京', value: 2.008568664},
+  {name: '甘肃', value: 1.92328932},
+  {name: '新疆', value: 1.910278279},
+  {name: '河北', value: 1.787348129},
+  {name: '吉林', value: 1.659656366},
+  {name: '黑龙江', value: 1.636445219},
+  {name: '山东', value: 1.453152812},
+  {name: '海南', value: 1.425855513},
+  {name: '内蒙古', value: 1.277386696},
+  {name: '天津', value: 1.181858472},
+  {name: '辽宁', value: 1.057474421}
+];
+
+        var toolTipData = [
+  {name: '贵州', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '重庆', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '四川', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '陕西', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '福建', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '湖北', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '广东', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '河南', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '安徽', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '云南', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '江西', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '宁夏', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '广西', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '湖南', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '江苏', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '山西', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '上海', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '青海', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '浙江', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '北京', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '甘肃', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '新疆', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '河北', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '吉林', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '黑龙江', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '山东', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '海南', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '内蒙古', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '天津', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]},
+  {name: '辽宁', value: [{"name":"丢失总数","value":3746},{"name":"每十万人丢失儿童数","value":10.4}]}
+];
+var yData = [];
+
+data.sort(function(o1, o2) {
+    if (isNaN(o1.value) || o1.value == null) return -1;
+    if (isNaN(o2.value) || o2.value == null) return 1;
+    return o1.value - o2.value;
+});
+
+for (var i = 0; i < data.length; i++) {
+    yData.push(data[i].name);
+}
+
+var option = {
+    title: {
+        text: '每十万人丢失儿童数',
+        textStyle: {
+            fontSize: 30
+        },
+        x: 'center'
+    },
+    tooltip: {
+        show: true,
+        formatter: function(params) {
+            if (typeof(params.value)[2] == "undefined") {
+                var toolTiphtml = ''
+                for(var i = 0;i<toolTipData.length;i++){
+                    if(params.name==toolTipData[i].name){
+                        toolTiphtml += toolTipData[i].name+':<br>'
+                        for(var j = 0;j<toolTipData[i].value.length;j++){
+                            toolTiphtml+=toolTipData[i].value[j].name+':'+toolTipData[i].value[j].value+"<br>"
+                        }
+                    }
+                }
+                console.log(toolTiphtml)
+                // console.log(convertData(data))
+                return toolTiphtml;
+            } else {
+                var toolTiphtml = ''
+                for(var i = 0;i<toolTipData.length;i++){
+                    if(params.name==toolTipData[i].name){
+                        toolTiphtml += toolTipData[i].name+':<br>'
+                        for(var j = 0;j<toolTipData[i].value.length;j++){
+                            toolTiphtml+=toolTipData[i].value[j].name+':'+toolTipData[i].value[j].value+"<br>"
+                        }
+                    }
+                }
+                console.log(toolTiphtml)
+                // console.log(convertData(data))
+                return toolTiphtml;
+            }
+        }
+      },
+    visualMap: {
+        type: 'continuous',
+        text: ['', ''],
+        showLabel: true,
+        seriesIndex: [0],
+        min: 0,
+        max: 7,
+        inRange: {
+            color: ['#edfbfb', '#b7d6f3', '#40a9ed', '#3598c1', '#215096', ]
+        },
+        textStyle: {
+            color: '#000'
+        },
+        bottom: 30,
+        left: 'left',
+    },
+    geo: {
+        roam: true,
+        map: 'china',
+        left: '100',
+        right:'100',
+        layoutSize: '100%',
+        label: {
+            emphasis: {
+                show: false
+            }
+        },
+        itemStyle: {
+            emphasis: {
+                areaColor: '#fff464'
+            }
+        },
+        regions: [{
+            name: '南海诸岛',
+            value: 0,
+            itemStyle: {
+                normal: {
+                    opacity: 0,
+                    label: {
+                        show: false
+                    }
+                }
+            }
+        }],
+    },
+    series: [{
+        name: 'mapSer',
+        type: 'map',
+        roam: false,
+        geoIndex: 0,
+        label: {
+            show: false,
+        },
+        data: data
+ 
+    }]
+};
+        myChart.setOption(option);
+
+        // 使用刚指定的配置项和数据显示图表。
+        
+    </script>
+</body>
+
+</html>
